@@ -42,8 +42,8 @@ public class EncryptionUtil {
 
 
 
-    public static String encrypt(char[] plaintext, String salt) throws Exception {
-        byte[] saltBytes = salt.getBytes();
+    public static String encrypt(char[] plaintext, byte[] saltBytes) throws Exception {
+        //byte[] saltBytes = salt.getBytes();
         SecretKeyFactory skf = SecretKeyFactory.getInstance(ALGORITHM);
 
         PBEKeySpec spec = new PBEKeySpec(encryptionKey.toCharArray(), saltBytes, iterations, keySize);
@@ -59,10 +59,10 @@ public class EncryptionUtil {
         return DatatypeConverter.printBase64Binary(encryptedTextBytes);
     }
 
-    public static String decrypt(char[] encryptedText, String salt) throws Exception {
+    public static String decrypt(char[] encryptedText, byte[] saltBytes) throws Exception {
 
         System.out.println(encryptedText);
-        byte[] saltBytes = salt.getBytes();
+        //byte[] saltBytes = salt.getBytes();
 
         byte[] encryptedTextBytes = DatatypeConverter.parseBase64Binary(new String(encryptedText));
 
