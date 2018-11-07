@@ -28,7 +28,7 @@ public class EncryptionUtil {
     private static String PADDING = "CBC/PKCS5Padding";
 
 
-    public static void main(String []args) throws Exception {
+    /*public static void main(String []args) throws Exception {
 
         String salt = getSalt();
         System.out.println("salt: " + salt);
@@ -38,7 +38,7 @@ public class EncryptionUtil {
         String encryptedMsg =  encrypt(message, salt);
         System.out.println("Encrypted: " + encryptedMsg);
         System.out.println("Decrypted: " + decrypt(encryptedMsg.toCharArray(), salt));
-    }
+    }*/
 
 
 
@@ -89,12 +89,20 @@ public class EncryptionUtil {
 
     }
 
-    public static String getSalt() throws Exception {
+    /*public static String getSalt() throws Exception {
 
         SecureRandom sr = SecureRandom.getInstance(SECURE_RANDOM_ALGORITHM);
         byte[] salt = new byte[20];
         sr.nextBytes(salt);
         return new String(salt);
+    }*/
+
+    public static byte[] getSaltBytes() throws Exception {
+
+        SecureRandom sr = SecureRandom.getInstance(SECURE_RANDOM_ALGORITHM);
+        byte[] salt = new byte[20];
+        sr.nextBytes(salt);
+        return salt;
     }
 
 }
